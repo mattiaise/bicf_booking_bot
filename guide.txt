@@ -1,0 +1,5 @@
+- booking bot with selenium idea:
+https://github.com/Muhammad-Nasr/booking-bot-selenium
+
+- snkrs bot with selenium:
+https://github.com/alexschimpf/Snkrs-Bot
