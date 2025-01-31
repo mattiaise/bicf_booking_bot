@@ -40,4 +40,8 @@ giorno.click()
 bb.time_slot(driver, args.session_start, args.time_amount)
 bb.confirm(driver)
 
-time.sleep(10)
+access_code = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.CLASS_NAME, "success"))
+)
+
+print(access_code.text.strip()) # -> Done

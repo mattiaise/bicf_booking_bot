@@ -58,6 +58,5 @@ def confirm(driver):
     booking_confirm = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "button.btn.btn-lg.btn-primary.my-2"))
     )
-    booking_confirm.click()
     time.sleep(2)
     booking_confirm.click()
