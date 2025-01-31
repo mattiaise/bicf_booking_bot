@@ -55,9 +55,13 @@ def confirm(driver):
     time.sleep(2)
     data_confirm.click()
 
-    booking_confirm = WebDriverWait(driver, 30).until(
-        EC.element_to_be_clickable((By.CLASS_NAME, "btn btn btn-lg btn-primary my-2 btn-primary"))
+    iframe = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.TAG_NAME, "iframe"))
     )
-    driver.execute_script("arguments[0].scrollIntoView(true);", booking_confirm)
+    driver.switch_to.frame(iframe)
+    booking_confirm = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, "button.btn.btn-lg.btn-primary.my-2"))
+    )
+    booking_confirm.click()
     time.sleep(2)
     booking_confirm.click()
