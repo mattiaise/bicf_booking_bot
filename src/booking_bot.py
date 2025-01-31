@@ -3,6 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, timedelta
 import data
+import time
 
 def login(driver):
     login = WebDriverWait(driver, 5).until(
@@ -42,15 +43,21 @@ def time_slot(driver, start, amount):
     time_slot = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, f"//div[@aria-label='time select']//div[starts-with(@aria-label, '{slot_start_str}')]//span[text()=' {slot_start_str}  - {slot_end_str}']"))
     )
+    driver.execute_script("arguments[0].scrollIntoView(true);", time_slot)
+    time.sleep(2)
     time_slot.click()
     
 def confirm(driver):
     data_confirm = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, "//a[@href='/portalePlanning/biblio/prenota/Riepilogo']"))
     )
+    driver.execute_script("arguments[0].scrollIntoView(true);", data_confirm)
+    time.sleep(2)
     data_confirm.click()
 
     booking_confirm = WebDriverWait(driver, 30).until(
-        EC.element_to_be_clickable((By.XPATH, "//button[contains(@class, 'btn-primary') and contains(@class, 'btn-lg')]"))
+        EC.element_to_be_clickable((By.CLASS_NAME, "btn btn btn-lg btn-primary my-2 btn-primary"))
     )
+    driver.execute_script("arguments[0].scrollIntoView(true);", booking_confirm)
+    time.sleep(2)
     booking_confirm.click()

@@ -11,8 +11,8 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--time-amount", required=True)
-parser.add_argument("--start-from", required=True)
-parser.add_argument("--scheduled", required=True)
+parser.add_argument("--session-start", required=True)
+parser.add_argument("--scheduled", required=False)
 args = parser.parse_args()
 
 service = Service(executable_path=data.DRIVER_PATH)
@@ -23,7 +23,6 @@ driver.fullscreen_window()
 
 bb.login(driver)
 
-# scegli fast booking
 fast_booking = WebDriverWait(driver, 5).until(
     EC.presence_of_element_located((By.ID, "riprenota_title"))
 )
@@ -31,13 +30,14 @@ fast_booking.click()
 
 bb.time_amount(driver, int(args.time_amount))
 
-# day picker 
 giorno = WebDriverWait(driver, 10).until(
     EC.element_to_be_clickable((By.XPATH, "//div[@class='days']//div[@aria-description='selezionabile']"))
 )
+driver.execute_script("arguments[0].scrollIntoView(true);", giorno)
+time.sleep(2)
 giorno.click()
 
-bb.time_slot(driver, args.start_from, args.time_amount)
+bb.time_slot(driver, args.session_start, args.time_amount)
 bb.confirm(driver)
 
 time.sleep(10)
