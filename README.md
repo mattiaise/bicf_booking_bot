@@ -17,8 +17,10 @@ Prima di eseguire il bot, assicurati di configurare corettamente il file `data.p
 
 Esempio di utilizzo:
 ```
-python src/main.py --time-amount 2 --session-start "08:00" --scheduled "y"
+python main.py --time-amount 2 --session-start "08:00" --scheduled "y"
 ```
+
+Assicurati di essere all'interno della directory `src` quando esegui il comando.
 
 ### Argomenti
 

@@ -52,7 +52,6 @@ def job():
             print(f"Errore: {e}, riprovo...")
         
         finally:
-            driver.quit()
             time.sleep(30)
 
 def main():
