@@ -34,6 +34,8 @@ Se l'argomento `--scheduled` è omesso o impostato su un valore diverso da y, il
 
 Il bot continuerà a riprovare fino a quando al prenotazione non viene confermata.
 
+Il bot si basa sull'utilizzo della sezione **riprenota** del sito interessato.
+
 ## Struttura del progetto 
 
 ```
