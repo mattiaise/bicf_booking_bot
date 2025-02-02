@@ -1,3 +1,0 @@
-capire se conviene usare il task scheduler di windows oppure se ha senso usare librerie py come schedule o APScheduler
-- schedule + semplice 
-- APScheduler + versatile
