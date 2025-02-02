@@ -22,9 +22,11 @@ python src/main.py --time-amount 2 --session-start "08:00" --scheduled "y"
 
 ### Argomenti
 
-`--time-amount` (obbligatorio): Specifica la durata della prenotazione in ore.
-`--session-start` (obbligatorio): Specifica l'orario di inizio della sessione nel formato HH:MM.
-`--scheduled` (opzionale): Se impostato su y, il bot attenderà fino alle 07:00 AM per eseguire la prenotazione.
+- `--time-amount` (obbligatorio): Specifica la durata della prenotazione in ore.
+
+- `--session-start` (obbligatorio): Specifica l'orario di inizio della sessione nel formato HH:MM.
+
+- `--scheduled` (opzionale): Se impostato su y, il bot attenderà fino alle 07:00 AM per eseguire la prenotazione.
 
 Se l'argomento `--scheduled` è omesso o impostato su un valore diverso da y, il bot verrà eseguito immediatamente.
 
