@@ -38,7 +38,7 @@ Il bot continuerà a riprovare fino a quando al prenotazione non viene confermat
 
 Il bot si basa sull'utilizzo della sezione **riprenota** del sito interessato.
 
-Nel caso in cui il comando `--scheduled` non funzioni correttamente si può usare in alternativa lo schedulatore di attività fornito dal proprio sistema operativo.
+Se il comando `--scheduled` non funziona correttamente, è possibile utilizzare in alternativa lo schedulatore di attività fornito dal sistema operativo.
 
 ## Struttura del progetto 
 
