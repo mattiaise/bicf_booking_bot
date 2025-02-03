@@ -41,7 +41,7 @@ def job():
             access_code = WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CLASS_NAME, "success"))
             )
-            
+            global code_text
             code_text = access_code.text.strip() 
             
             if "Done" in code_text:
@@ -65,6 +65,9 @@ def main():
     if args.scheduled == "y":
         print("Prenotazione impostata per le 07:00 del mattino.")
         schedule.every().day.at("07:00").do(job)
+        while True:
+            schedule.run_pending()
+            time.sleep(30)
     else:
         job()
 
