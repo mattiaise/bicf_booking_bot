@@ -7,7 +7,7 @@ BICF Booking Bot è un bot automatico basato su Selenium che consente di prenota
 - **Versione di python:** `3.*` (testato su versioni da `3.8.*` a `3.11.*`)
 - **Installare le dipendenze:** `pip install -r dependencies.txt`
 - **Google Chrome** installato
-- **chromedriver** compatibili con la propria versione di Chrome
+- **chromedriver** compatibili con la propria versione di Chrome (https://sites.google.com/chromium.org/driver/)
 
 ## Configurazione
 
