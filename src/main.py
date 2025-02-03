@@ -52,7 +52,7 @@ def job():
             print(f"Errore: {e}, riprovo...")
         
         finally:
-            time.sleep(30)
+            time.sleep(10)
 
 def main():
     parser = argparse.ArgumentParser()
@@ -63,11 +63,8 @@ def main():
     args = parser.parse_args()
 
     if args.scheduled == "y":
-        print("Schedulazione impostata per le 07:00 AM...")
+        print("Prenotazione impostata per le 07:00 del mattino.")
         schedule.every().day.at("07:00").do(job)
-        while True:
-            schedule.run_pending()
-            time.sleep(30)
     else:
         job()
 
