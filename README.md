@@ -30,7 +30,7 @@ Assicurati di essere all'interno della directory `src` quando esegui il comando.
 
 - `--scheduled` (opzionale): Se impostato su y, il bot attenderà fino alle 07:00 AM per eseguire la prenotazione.
 
-Se l'argomento `--scheduled` è omesso o impostato su un valore diverso da y, il bot verrà eseguito immediatamente.
+Se l'argomento `--scheduled` è omesso o impostato su un valore diverso da **y**, il bot verrà eseguito immediatamente.
 
 ## Note
 
