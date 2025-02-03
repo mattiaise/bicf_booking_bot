@@ -48,6 +48,6 @@ bicf_booking_bot
 │   ├── booking_bot.py            # Funzioni di supporto per il bot
 │   ├── data.py                   # Configurazione e credenziali
 │   ├── main.py                   # Script principale del bot
-├── dependecies.txt               # File che mostra le dipendenze
+├── dependencies.txt              # File che mostra le dipendenze
 └── README.md                     # Documentazione
 ```
