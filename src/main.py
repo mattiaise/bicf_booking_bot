@@ -12,8 +12,10 @@ import data
 
 """
 
+                    !!! MODIFICA NON TESTATA !!!
 Se si volesse usare il bot in modalità headless scommentare il codice sottostante,
-sostituire la riga 35 con quanto segue -> driver = create_headless_driver()
+sostituire la riga 39 con quanto segue -> driver = create_headless_driver(),
+rimuovere la riga 43 (dimensione pagina impostata nel codice sottostante).
 
 from selenium.webdriver.chrome.options import Options
 
