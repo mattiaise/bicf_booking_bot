@@ -5,58 +5,74 @@ from datetime import datetime, timedelta
 import data
 import time
 
+SHORT_WAIT = 2
+
+def scroll_and_click(driver, element, wait_time=SHORT_WAIT):
+    driver.execute_script("arguments[0].scrollIntoView(true);", element)
+    time.sleep(wait_time)
+    element.click()
+
 def login(driver):
-    login = WebDriverWait(driver, 15).until(
+    login_button = WebDriverWait(driver, 15).until(
         EC.presence_of_element_located((By.XPATH, "//button[@data-cypress='navBar-Accedi']"))
     )
-    login.click()
+    login_button.click()
 
-    username = WebDriverWait(driver, 15).until(
+    username_field = WebDriverWait(driver, 15).until(
         EC.presence_of_element_located((By.ID, "username"))
     )
-    username.send_keys(data.USER)
-    password = driver.find_element(By.ID, "password")
-    password.send_keys(data.PSW)
+    username_field.send_keys(data.USER)
 
-    send_data = driver.find_element(By.XPATH, "//input[@type='submit']")
-    send_data.click()
-    
+    password_field = WebDriverWait(driver, 15).until(
+        EC.presence_of_element_located((By.ID, "password"))
+    )
+    password_field.send_keys(data.PSW)
+
+    submit_button = WebDriverWait(driver, 15).until(
+        EC.element_to_be_clickable((By.XPATH, "//input[@type='submit']"))
+    )
+    submit_button.click()
+
 def time_amount(driver, amount):
-    durata = WebDriverWait(driver, 15).until(
+    durata_dropdown = WebDriverWait(driver, 15).until(
         EC.presence_of_element_located((By.ID, "durata"))
     )
-    durata.click()
+    durata_dropdown.click()
 
-    time_amount = WebDriverWait(driver, 15).until(
-        EC.presence_of_element_located((By.XPATH, f"//option[@value='{amount*3600}']"))
+    option_value = amount * 3600
+    option = WebDriverWait(driver, 15).until(
+        EC.presence_of_element_located((By.XPATH, f"//option[@value='{option_value}']"))
     )
-    time_amount.click()
-    durata.click()
-    
+    option.click()
+
+    durata_dropdown.click()
+
 def time_slot(driver, start, amount):
     slot_start = datetime.strptime(start, "%H:%M")
     slot_end = slot_start + timedelta(hours=int(amount))
-
-    slot_end_str = slot_end.strftime("%H:%M")
-    slot_start_str = slot_start.strftime("%H:%M")
-
-    time_slot = WebDriverWait(driver, 30).until(
-        EC.element_to_be_clickable((By.XPATH, f"//div[@aria-label='time select']//div[starts-with(@aria-label, '{slot_start_str}')]//span[text()=' {slot_start_str}  - {slot_end_str}']"))
-    )
-    driver.execute_script("arguments[0].scrollIntoView(true);", time_slot)
-    time.sleep(2)
-    time_slot.click()
     
+    slot_start_str = slot_start.strftime("%H:%M")
+    slot_end_str = slot_end.strftime("%H:%M")
+
+    xpath = (
+        f"//div[@aria-label='time select']"
+        f"//div[starts-with(@aria-label, '{slot_start_str}')]"
+        f"//span[text()=' {slot_start_str}  - {slot_end_str}']"
+    )
+    
+    time_slot_elem = WebDriverWait(driver, 30).until(
+        EC.element_to_be_clickable((By.XPATH, xpath))
+    )
+    scroll_and_click(driver, time_slot_elem)
+
 def confirm(driver):
-    data_confirm = WebDriverWait(driver, 30).until(
+    data_confirm_link = WebDriverWait(driver, 30).until(
         EC.element_to_be_clickable((By.XPATH, "//a[@href='/portalePlanning/biblio/prenota/Riepilogo']"))
     )
-    driver.execute_script("arguments[0].scrollIntoView(true);", data_confirm)
-    time.sleep(2)
-    data_confirm.click()
-    
-    booking_confirm = WebDriverWait(driver, 15).until(
+    scroll_and_click(driver, data_confirm_link)
+
+    booking_confirm_button = WebDriverWait(driver, 15).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "button.btn.btn-lg.btn-primary.my-2"))
     )
-    time.sleep(2)
-    booking_confirm.click()
+    time.sleep(SHORT_WAIT)
+    booking_confirm_button.click()
