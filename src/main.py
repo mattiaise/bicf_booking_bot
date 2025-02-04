@@ -27,6 +27,7 @@ def create_headless_driver():
     service = Service(executable_path=data.DRIVER_PATH)
     driver = webdriver.Chrome(service=service, options=chrome_options)
     return driver
+    
 """
 
 def job(args, state):
