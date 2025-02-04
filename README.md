@@ -17,7 +17,7 @@ Prima di eseguire il bot, assicurati di configurare corettamente il file `data.p
 
 Esempio di utilizzo:
 ```
-python main.py --time-amount 2 --session-start "08:00" --scheduled "y"
+python main.py --time-amount 2 --session-start "08:00" --scheduled
 ```
 
 Assicurati di essere all'interno della directory `src` quando esegui il comando.
@@ -28,9 +28,9 @@ Assicurati di essere all'interno della directory `src` quando esegui il comando.
 
 - `--session-start` (obbligatorio): Specifica l'orario di inizio della sessione nel formato HH:MM.
 
-- `--scheduled` (opzionale): Se impostato su y, il bot attenderà fino alle 07:00 AM per eseguire la prenotazione.
+- `--scheduled` (opzionale): Se inserito, il bot attenderà fino alle 07:00 AM per eseguire la prenotazione.
 
-Se l'argomento `--scheduled` è omesso o impostato su un valore diverso da **y**, il bot verrà eseguito immediatamente.
+Se l'argomento `--scheduled` è omesso, il bot verrà eseguito immediatamente.
 
 ## Note
 
