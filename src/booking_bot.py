@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import data
 import time
 
-SHORT_WAIT = 2
+SHORT_WAIT = 1
 
 def scroll_and_click(driver, element, wait_time=SHORT_WAIT):
     driver.execute_script("arguments[0].scrollIntoView(true);", element)

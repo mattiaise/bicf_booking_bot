@@ -10,6 +10,24 @@ from selenium.webdriver.support import expected_conditions as EC
 import booking_bot as bb
 import data
 
+"""
+
+Se si volesse usare il bot in modalità headless scommentare il codice sottostante,
+sostituire la riga 35 con quanto segue -> driver = create_headless_driver()
+
+from selenium.webdriver.chrome.options import Options
+
+def create_headless_driver():
+    
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')         
+    chrome_options.add_argument('--disable-gpu')      
+    chrome_options.add_argument("window-size=1920,1080")  
+
+    service = Service(executable_path=data.DRIVER_PATH)
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    return driver
+"""
 
 def job(args, state):
 
@@ -20,7 +38,7 @@ def job(args, state):
             try:
                 driver.get(data.URL)
                 driver.fullscreen_window()
-
+                
                 bb.login(driver)
 
                 fast_booking = WebDriverWait(driver, 5).until(
