@@ -89,7 +89,7 @@ def main():
     parser.add_argument(
         "--scheduled",
         action="store_true",
-        help="Se presente, la prenotazione verrà eseguita ogni giorno alle 07:00"
+        help="Se presente, la prenotazione verrà eseguita alle 07:00"
     )
     args = parser.parse_args()
 
