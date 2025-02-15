@@ -1,11 +1,13 @@
 import time
 import argparse
 import schedule
+import logging
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import WebDriverException
 
 import booking_bot as bb
 import data
@@ -31,6 +33,8 @@ def create_headless_driver():
     return driver
     
 """
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def job(args, state):
 
@@ -69,17 +73,19 @@ def job(args, state):
                 code_text = access_code.text.strip()
 
                 if "Done" in code_text or "Fatto" in code_text:
-                    print("Prenotazione completata con successo!")
+                    logging.info("Prenotazione completata con successo!")
                     state["done"] = True 
                     return
                 else:
-                    print("Access code non valido:", code_text)
+                    logging.warning("Access code non valido: %s", code_text)
 
             finally:
                 driver.quit()
 
+        except WebDriverException as e:
+            logging.error("Errore WebDriver: %s. Riprovo tra 10 secondi...", e)
         except Exception as e:
-            print(f"Errore: {e}. Riprovo tra 10 secondi...")
+            logging.error("Errore: %s. Riprovo tra 10 secondi...", e)
 
         time.sleep(10)
 
@@ -97,12 +103,12 @@ def main():
 
     if args.scheduled:
         state = {"done": False}
-        print("Prenotazione impostata per le 07:00 del mattino.")
+        logging.info("Prenotazione impostata per le 07:00 del mattino.")
         schedule.every().day.at("07:00").do(lambda: job(args, state))
         while True:
             schedule.run_pending()
             if state.get("done", False):
-                print("Booking completato, uscita dal ciclo di scheduling.")
+                logging.info("Booking completato, uscita dal ciclo di scheduling.")
                 schedule.clear()
                 break
             time.sleep(30)
