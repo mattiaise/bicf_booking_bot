@@ -7,6 +7,8 @@ import time
 import logging
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger()
+logger.propagate = False
 
 SHORT_WAIT = 1
 
@@ -36,6 +38,7 @@ def login(driver):
             EC.element_to_be_clickable((By.XPATH, "//input[@type='submit']"))
         )
         submit_button.click()
+        logging.info("Login eseguito con successo.")
     except Exception as e:
         logging.error("Errore durante il login: %s", e)
         raise
@@ -54,6 +57,7 @@ def time_amount(driver, amount):
         option.click()
 
         durata_dropdown.click()
+        logging.info("Durata selezionata con successo.")
     except Exception as e:
         logging.error("Errore durante la selezione della durata: %s", e)
         raise
@@ -76,6 +80,7 @@ def time_slot(driver, start, amount):
             EC.element_to_be_clickable((By.XPATH, xpath))
         )
         scroll_and_click(driver, time_slot_elem)
+        logging.info("Fascia oraria selezionata con successo.")
     except Exception as e:
         logging.error("Errore durante la selezione della fascia oraria: %s", e)
         raise
@@ -92,6 +97,7 @@ def confirm(driver):
         )
         time.sleep(SHORT_WAIT)
         booking_confirm_button.click()
+        logging.info("Prenotazione confermata con successo.")
     except Exception as e:
         logging.error("Errore durante la conferma della prenotazione: %s", e)
         raise
